@@ -15,7 +15,7 @@ echo "This is an example of a command that spans lines by continuing a pipeline 
 
 # multiline command using backlash to escape the end of line character
 echo \
-    "This line continues because we turned off the end of line character on the first line"
+  "This line continues because we turned off the end of line character on the first line"
 
 
 # multiline command due to inline data using HERE document

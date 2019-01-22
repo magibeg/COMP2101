@@ -1,4 +1,4 @@
-#!/bin/#!/usr/bin/env bash
+#!/usr/bin/env bash
 #My third scfript - helloworldugly.sh
 #This script displays the string "Hello World!"
 
