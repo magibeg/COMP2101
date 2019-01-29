@@ -20,7 +20,9 @@ test -f ~/Pictures/pics.zip && unzip -d ~/Pictures -o -q ~/Pictures/pics.zip && 
 # download a tar file from zonzorp
 test -f ~/Pictures/pics.tgz || wget -q -O ~/Pictures/pics.tgz https://zonzorp.net/pics.tgz
 
+#
 test -f ~/Pictures/pics.tgz && tar -xf ~/Pictures/pics.tgz -C ~/Pictures && rm ~/Pictures/pics.tgz
+
 
 # Make a report on what we have in the Pictures directory
 test -d ~/Pictures && cat <<EOF
