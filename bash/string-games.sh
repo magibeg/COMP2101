@@ -67,7 +67,7 @@ echo "=========================="
 
 # TASK 8: Modify this pipeline to use grep to print the interface names instead of cut
 echo "========Interface Names using grep========"
-ip -br a s| grep -o "[^ ]*"
+ip -br a s| grep -o "^[^ ]*"
 echo "=========================="
 
 # this pipeline uses the find command to find regular files
