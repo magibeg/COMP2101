@@ -20,9 +20,9 @@ day=$(date +%A)
 ###############
 # Main        #
 ###############
-read -r -d '' test <<EOF
+read -r -d '' outPut <<EOF
 
 Welcome to planet $hostname, "$title $myname!"
 It is $Time on $day
 EOF
-cowsay $test
+cowsay -n <<< "$outPut"
