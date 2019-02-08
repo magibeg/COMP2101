@@ -2,6 +2,7 @@
 # This script demonstrates file testing
 
 # Test for the existence of the /etc/resolv.conf file
+[ -e /etc/resolv.conf ] && echo "/etc/resolv.conf exists" || echo "/etc/resolv.conf does not exist"
 # TASK 1: Add a test to see if the /etc/resolv.conf file is a regular file
 [ -f /etc/resolv.conf ] && echo "/etc/resolv.conf is a regular file" || echo "/etc/resolv.conf is not a regular file"
 # TASK 2: Add a test to see if the /etc/resolv.conf file is a symbolic link
@@ -13,15 +14,16 @@
 # TASK 5: Add a test to see if the /etc/resolv.conf file is writable
 [ -w /etc/resolv.conf ] && echo "/etc/resolv.conf is writable by $USER" || echo "/etc/resolv.conf is not writable by $USER"
 # TASK 6: Add a test to see if the /etc/resolv.conf file is executable
-[ -e /etc/resolv.conf ] && echo "/etc/resolv.conf exists" || echo "/etc/resolv.conf does not exist"
+[ -x /etc/resolv.conf ] && echo "/etc/resolv.conf can be executed" || echo "/etc/resolv.conf can not be executed"
 
 # Tests if /tmp is a directory
+[ -d /tmp ] && echo "/tmp is a directory" || echo "/tmp is not a directory"
 # TASK 4: Add a test to see if the /tmp directory is readable
 [ -r /tmp ] && echo "/tmp is readable" || echo "/tmp is not readable"
 # TASK 5: Add a test to see if the /tmp directory is writable
 [ -w /tmp ] && echo "/tmp is writable" || echo "/tmp is not writable"
 # TASK 6: Add a test to see if the /tmp directory can be accessed
-[ -d /tmp ] && echo "/tmp is a directory" || echo "/tmp is not a directory"
+#What does accessed mean?
 
 # Tests if one file is newer than another
 # TASK 7: Add testing to print out which file newest, or if they are the same age
