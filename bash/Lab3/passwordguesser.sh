@@ -7,8 +7,8 @@
 #           *** Do not use the exit command
 
 referenceString="password"
-maxGuess=2
-counter=0
+maxGuess=3
+counter=1
 
 while [ $counter -le $maxGuess ]
 do
