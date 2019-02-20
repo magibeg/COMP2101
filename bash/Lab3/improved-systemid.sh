@@ -23,10 +23,17 @@
 # we use the hostname command to get our system name
 my_hostname=$(hostname)
 
+
+#gets a list of devices
+interfaceName=($(ip -o link show | awk -F': ' '{print $2}'))
+
+for i in "${interfaceName[@]}"; do
+  echo "Grabbing the $i interface"
+
 # the LAN name is looked up using the LAN address in case it is different from the system name
 # the lan address is pulled out of the ip address command output
 # we are assuming there is only one IPV4 address assigned to this interface
-eno1_ipv4_address=$(ip a s eno1|awk -F '[/ ]+' '/inet /{print $3}')
+eno1_ipv4_address=$(ip a s $i|awk -F '[/ ]+' '/inet /{print $3}')
 eno1_ipv4_hostname=$(getent hosts $eno1_ipv4_address | awk '{print $2}')
 
 # the default route can be found in the route table normally
@@ -36,14 +43,13 @@ default_router_name=$(getent hosts $default_router_address|awk '{print $2}')
 
 # the network address can be easily pulled from the route table with the ip route list command
 # the network name can be looked up with the getent command
-eno1_network_address=$(ip route list dev eno1 scope link|cut -d ' ' -f 1)
+eno1_network_address=$(ip route list dev $i scope link|cut -d ' ' -f 1)
 eno1_network_number=$(cut -d / -f 1 <<<"$eno1_network_address")
 eno1_network_name=$(getent networks $eno1_network_number|awk '{print $1}')
 
 # finding external information relies on curl being installed and relies on live internet connection
 external_address=$(curl -s icanhazip.com)
 external_name=$(getent hosts $external_address | awk '{print $2}')
-
 
 echo "
 System Identification Summary
@@ -53,11 +59,13 @@ Default Router: $default_router_address
 Router Name   : $default_router_name
 External IP   : $external_address
 External Name : $external_name
-
-Interface eno1 Address         : $eno1_ipv4_address
-Interface eno1 Name            : $eno1_ipv4_hostname
-Interface eno1 Network Address : $eno1_network_address
-Interface eno1 Network Name    : $eno1_network_name
-
 "
 
+echo "
+Interface $i Address         : $eno1_ipv4_address
+Interface $i Name            : $eno1_ipv4_hostname
+Interface $i Network Address : $eno1_network_address
+Interface $i Network Name    : $eno1_network_name
+
+"
+done
