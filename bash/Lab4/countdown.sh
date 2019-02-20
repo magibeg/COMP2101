@@ -22,6 +22,7 @@ numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 #
 function error-message {
         echo "${programName}: ${1:-Unknown Error - a moose bit my sister once...}" >&2
+
 }
 
 # This function will send a message to stderr and exit with a failure status
@@ -39,7 +40,21 @@ Default waittime is 1, waitcount is 10
 EOF
 }
 
+function error-int {
+        echo "You are not allowed to interrupt"
+        sleepCount=11
+}
+
+function error-quit {
+        echo "You found the secret to getting out"
+        exit
+}
+
 #### Main Program
+trap error-int SIGINT
+trap error-quit SIGQUIT
+
+
 
 # Process command line parameters
 while [ $# -gt 0 ]; do

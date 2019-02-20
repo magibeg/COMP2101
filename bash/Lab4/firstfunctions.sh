@@ -23,12 +23,23 @@ function errormessage {
 ##################
 # CLI Processing
 ##################
+
+debug="no"
+verbose="no"
 # Process the command line options, saving the results in variables for later use.
 while [ $# -gt 0 ]; do
   case "$1" in
     -h|--help)
       displayusage
       exit 0
+      ;;
+    -d )
+      debug="yes"
+      echo "Debug mode has been set to: $debug"
+      ;;
+    -v )
+      verbose="yes"
+      echo "Verbose mode has been set to: $verbose"
       ;;
     *)
       errormessage "I don't know what '$1' is. Sorry."
