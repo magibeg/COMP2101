@@ -2,6 +2,7 @@
 # This script demonstrates how the shift command works
 
 debug="no"
+debugLevel="0"
 extraFlags=()
 # loop through the command line arguments
 while [ $# -gt 0 ]; do
@@ -20,8 +21,12 @@ while [ $# -gt 0 ]; do
     ;;
     -d )
     echo "Processing '$1'."
+    echo "Processing $2"
     debug="yes"
+    debugLevel=$2
     echo "Debug mode=$debug"
+    echo "Debug Level=$debugLevel"
+    shift
     ;;
     * )
       extraFlags+=("$1")
